@@ -31,6 +31,7 @@ function App() {
   const diceElelments = dice.map(die => (
     <Die value={die.value} 
         key={die.id}
+        isHeld={die.isHeld}
     />));
 
   return (
