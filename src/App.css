@@ -17,3 +17,26 @@
   gap: 18px;
 }
 
+.roll-btn {
+  font-family: 'Karla', sans-serif;
+
+  margin-top: 26px;
+  padding: 10px 25px;
+  background: #5035FF;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.18);
+  border: none;
+  border-radius: 4px;
+
+  font-weight: 700;
+  font-size: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.roll-btn:focus {
+  outline: none;
+}
+
+.roll-btn:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
