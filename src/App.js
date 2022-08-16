@@ -8,31 +8,29 @@ function App() {
 
   const [dice, setDice] = React.useState( () => allNewDice() );
 
+  function generateNewDie() {
+    return {
+      value: Math.ceil(Math.random() * 6),
+      isHeld: false,
+      id: nanoid()
+    };
+  };
+
   function allNewDice() {
 
     const numsArray = [];
     for (let i = 0; i < 10; i++) {
-      const randomNum = Math.floor(Math.random() * 6) + 1;
-      numsArray.push(randomNum);
+      numsArray.push(generateNewDie());
     };
 
-    return numsArray.map(num => ({
-      value: num, 
-      isHeld: false, 
-      id: nanoid()
-    }));
-
+    return numsArray;
   };
 
   function rollDice() {
     setDice(prevDice => prevDice.map(die => {
       return die.isHeld ? 
-              die :
-              {
-                  value: Math.ceil(Math.random() * 6),
-                  isHeld: false,
-                  id: nanoid()
-              };
+            die :
+            generateNewDie();
     }));
   };
 
