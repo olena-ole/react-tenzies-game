@@ -24,8 +24,16 @@ function App() {
 
   };
 
-  function handleClick() {
-    setDice(allNewDice());
+  function rollDice() {
+    setDice(prevDice => prevDice.map(die => {
+      return die.isHeld ? 
+              die :
+              {
+                  value: Math.ceil(Math.random() * 6),
+                  isHeld: false,
+                  id: nanoid()
+              };
+    }));
   };
 
   function holdDice(id) {
@@ -47,7 +55,7 @@ function App() {
         {diceElelments}
       </div>
 
-      <button className="roll-btn" onClick={handleClick}>Roll</button>
+      <button className="roll-btn" onClick={rollDice}>Roll</button>
     </main>
   );
 };
