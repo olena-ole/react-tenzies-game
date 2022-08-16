@@ -6,6 +6,6 @@ export default function Die(props) {
         <div className="die">
             {props.value}
         </div>
-    )
+    );
 
-}
+};
