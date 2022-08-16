@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Die from './components/Die';
 import {nanoid} from 'nanoid';
+import Confetti from 'react-confetti';
 
 
 function App() {
@@ -34,11 +35,16 @@ function App() {
   };
 
   function rollDice() {
-    setDice(prevDice => prevDice.map(die => {
-      return die.isHeld ? 
-            die :
-            generateNewDie();
-    }));
+    if (tenzies) {
+      setDice(allNewDice())
+      setTenzies(false);
+    } else {
+      setDice(prevDice => prevDice.map(die => {
+        return die.isHeld ? 
+              die :
+              generateNewDie();
+      }));
+    }
   };
 
   function holdDice(id) {
@@ -62,7 +68,8 @@ function App() {
         {diceElelments}
       </div>
 
-      <button className="roll-btn" onClick={rollDice}>Roll</button>
+      <button className="roll-btn" onClick={rollDice}>{tenzies ? 'New Game' : 'Roll'}</button>
+      {tenzies && <Confetti/>}
     </main>
   );
 };
