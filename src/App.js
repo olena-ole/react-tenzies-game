@@ -6,7 +6,15 @@ import {nanoid} from 'nanoid';
 
 function App() {
 
-  const [dice, setDice] = React.useState( () => allNewDice() );
+  const [dice, setDice] = React.useState(() => allNewDice());
+  const [tenzies, setTenzies] = React.useState(false);
+
+  React.useEffect(() => {
+    const value = dice[0].value;
+    if (dice.every(die => die.isHeld && die.value === value)) {
+      setTenzies(true);
+    }
+  }, [dice])
 
   function generateNewDie() {
     return {
@@ -17,7 +25,6 @@ function App() {
   };
 
   function allNewDice() {
-
     const numsArray = [];
     for (let i = 0; i < 10; i++) {
       numsArray.push(generateNewDie());
