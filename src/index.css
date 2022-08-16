@@ -9,3 +9,7 @@ body {
   font-family: 'Karla', sans-serif;
 }
 
+h1, p {
+  margin: 0;
+}
+

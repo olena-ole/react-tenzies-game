@@ -9,6 +9,23 @@
   padding: 35px;
 }
 
+.title {
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.03em;
+}
+
+.instructions {
+  margin-top: 10px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.03em;
+
+  color: #4A4E74;
+}
+
 .dice-wrapper {
   margin-top: 30px;
 
