@@ -8,6 +8,8 @@ import Confetti from 'react-confetti';
 function App() {
 
   const [dice, setDice] = React.useState(() => allNewDice());
+  const [currentScore, setCurrentScore] = React.useState(1);
+  // const [bestScore, setBestSCore] = React.useState( () => {} || )
   const [tenzies, setTenzies] = React.useState(false);
 
   React.useEffect(() => {
@@ -38,7 +40,9 @@ function App() {
     if (tenzies) {
       setDice(allNewDice())
       setTenzies(false);
+      setCurrentScore(1);
     } else {
+      setCurrentScore(prev => prev + 1);
       setDice(prevDice => prevDice.map(die => {
         return die.isHeld ? 
               die :
@@ -70,6 +74,10 @@ function App() {
 
       <button className="roll-btn" onClick={rollDice}>{tenzies ? 'New Game' : 'Roll'}</button>
       {tenzies && <Confetti/>}
+      <div className="score">
+        <p className="score-current">Your Score: {currentScore}</p>
+        <p className="score-best">Best score:</p>
+      </div>
     </main>
   );
 };
