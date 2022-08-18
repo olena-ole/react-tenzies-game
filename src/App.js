@@ -9,15 +9,26 @@ function App() {
 
   const [dice, setDice] = React.useState(() => allNewDice());
   const [currentScore, setCurrentScore] = React.useState(1);
-  // const [bestScore, setBestSCore] = React.useState( () => {} || )
+  const [bestScore, setBestSCore] = React.useState( () => localStorage.getItem('bestScore') || '');
   const [tenzies, setTenzies] = React.useState(false);
 
   React.useEffect(() => {
     const value = dice[0].value;
     if (dice.every(die => die.isHeld && die.value === value)) {
       setTenzies(true);
+    };
+  }, [dice]);
+
+  React.useEffect( () => {
+    if (tenzies === true) {
+      const currentBest = +localStorage.getItem('bestScore');
+      if (currentBest === 0 || currentBest > currentScore) {
+        localStorage.setItem('bestScore', currentScore);
+        setBestSCore(currentScore);
+      }
     }
-  }, [dice])
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tenzies])
 
   function generateNewDie() {
     return {
@@ -76,7 +87,7 @@ function App() {
       {tenzies && <Confetti/>}
       <div className="score">
         <p className="score-current">Your Score: {currentScore}</p>
-        <p className="score-best">Best score:</p>
+        <p className="score-best">Best score: {bestScore}</p>
       </div>
     </main>
   );
